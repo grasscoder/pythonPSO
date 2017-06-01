@@ -9,7 +9,7 @@ class PSO:
         self.c2 = 1.4 # 粒子群中最好的粒子的位置对粒子迁移速度的影响
         self.maxgen = 200 # 进化代数
         self.popsize = 100 # 粒子群大小
-        self.psize = 3 # 粒子大小--> 指的是维度么？？
+        self.psize = 3 # 粒子大小--> 指的是维度
         self.Vmax = 5
         self.Vmin = -5 # 粒子移动速度
         self.lb = np.ones((self.psize,1))*(-10)
@@ -25,10 +25,13 @@ class PSO:
         return mat
     # 返回一个二维数组的最小值和索引
     def amin_index(self,a,axis=0):
+        """
+        a是一个矩阵
+        """
         value_min = np.amin(a,axis=axis)
         index_min = []
         if axis == 0:
-            for i in range(a.shape[1]):
+            for i in range(a.shape[1]):#以矩阵a的列长度作为循环条件
                 index_min.append(list(a[:,i]).index(value_min[i]))
         else:
             for i in range(a.shape[0]):
